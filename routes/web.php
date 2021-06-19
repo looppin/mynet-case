@@ -17,6 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::namespace('App\Http\Controllers\Backend')->group(function (){
+
+    Route::prefix('admin')->group(function (){
+
+        Route::get('/','DefaultController@index')->name('admin.index');
+
+    });
+
+});
+
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
