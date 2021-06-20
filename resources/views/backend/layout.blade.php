@@ -65,13 +65,17 @@
 
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        @isset(Auth::user()->file)
                         <img src="/common/backend/user/{{ Auth::user()->file }}" alt="profile"/>
+                        @endisset
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        @isset(Auth::user()->id)
                         <a class="dropdown-item" href="{{route('user.edit',Auth::user()->id)}}">
                             <i class="ti-settings text-primary"></i>
                             Settings
                         </a>
+                        @endisset
                         <a class="dropdown-item" href="{{route('admin.logout')}}">
                             <i class="ti-power-off text-primary"></i>
                             Logout
@@ -166,9 +170,11 @@
     <script>alertify.error('{{ session('error') }}')</script>
 @endif
 
+@isset($errors)
 @foreach($errors->all() as $error)
     <script>alertify.error('{{ $error }}')</script>
 @endforeach
+@endisset
 
 </body>
 
