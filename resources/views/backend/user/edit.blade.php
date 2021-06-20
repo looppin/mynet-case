@@ -16,7 +16,6 @@
                             <div class="input-group col-xs-12">
                                 <input type="file" class="form-control file-upload-info" placeholder="Upload Image" name="user_file">
                                 <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                         </span>
                             </div>
                         </div>
