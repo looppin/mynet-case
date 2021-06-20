@@ -13,4 +13,9 @@ class DefaultController extends Controller
         return view('backend.default.index');
 
     }
+
+    public function newperson()
+    {
+        return view('backend.default.addperson');
+    }
 }

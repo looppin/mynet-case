@@ -24,6 +24,9 @@ Route::namespace('App\Http\Controllers\Backend')->group(function (){
 
         Route::get('/','DefaultController@index')->name('admin.index');
 
+        Route::get('/newperson','DefaultController@newperson')->name('admin.newperson');
+        Route::resource('person','PersonController');
+
     });
 
 });

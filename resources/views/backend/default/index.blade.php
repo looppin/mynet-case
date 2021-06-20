@@ -1,5 +1,5 @@
 @extends('backend.layout')
-@section('title','Berk Soroğlu')
+@section('title','Berk Soroğlu | Admin')
 @section('content')
 <div class="content-wrapper">
     <div class="row">
