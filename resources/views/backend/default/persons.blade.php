@@ -34,7 +34,7 @@
                             <tr id="item-{{ $i->id }}">
                                 <td>{{ $i->id }}</td>
                                 <td>{{ $i->name }}</td>
-                                <td>{{ $i->birthday }}</td>
+                                <td>@php echo date('d/m/Y', strtotime($i->birthday)) @endphp</td>
                                 <td>
                                     @switch($i->gender)
                                         @case('Woman')

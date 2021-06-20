@@ -67,7 +67,7 @@ class PersonController extends Controller
 
         if( $person && $Addresses )
         {
-            return redirect(route('admin.index'))->with('success','Kişi Kayıt Edildi!');
+            return redirect(route('person.index'))->with('success','Kişi Kayıt Edildi!');
         }else{
             return back()->with('error','Kişi Kayıt Edilmedi!');
         }
