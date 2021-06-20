@@ -49,7 +49,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Doğum Tarihi</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="date" class="form-control" placeholder="gg/aa/yyyy" name="birthday" value="@php echo date('d/m/Y', strtotime($person->birthday)) @endphp"/>
+                                            <input type="date"  class="form-control" placeholder="gg/aa/yyyy" name="birthday" value="@php echo date('Y-m-d', strtotime($person->birthday)) @endphp"/>
                                         </div>
                                     </div>
                                 </div>

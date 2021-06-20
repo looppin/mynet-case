@@ -48,7 +48,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Doğum Tarihi</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="date" class="form-control" placeholder="gg/aa/yyyy" name="birthday"/>
+                                            <input type="date"  class="form-control" placeholder="gg/aa/yyyy" name="birthday"/>
                                         </div>
                                     </div>
                                 </div>
