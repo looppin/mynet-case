@@ -22,6 +22,32 @@
     <link rel="stylesheet" href="/common/backend/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="/common/backend/images/favicon.png" />
+
+    {{--    Alertify --}}
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+    <!--
+        RTL version
+    -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.rtl.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.rtl.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.rtl.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.rtl.min.css"/>
+
+
 </head>
 <body>/common/backend/
 <div class="container-scroller">
@@ -42,11 +68,11 @@
                         <img src="/common/backend/images/faces/face28.jpg" alt="profile"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item">
+                        <a class="dropdown-item" href="{{route('user.edit',Auth::user()->id)}}">
                             <i class="ti-settings text-primary"></i>
                             Settings
                         </a>
-                        <a class="dropdown-item">
+                        <a class="dropdown-item" href="{{route('admin.logout')}}">
                             <i class="ti-power-off text-primary"></i>
                             Logout
                         </a>
@@ -79,8 +105,8 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="/common/backend/pages/ui-features/buttons.html">Listele</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('admin.newperson')}}">Yeni Ekle</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('person.index')}}">Listele</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('person.create')}}">Yeni Ekle</a></li>
                         </ul>
                     </div>
                 </li>
@@ -131,6 +157,19 @@
 <!-- End custom js for this page-->
 
 @yield('js')
+
+@if(session()->has('success'))
+    <script>alertify.success('{{ session('success') }}')</script>
+@endif
+
+@if(session()->has('error'))
+    <script>alertify.error('{{ session('error') }}')</script>
+@endif
+
+@foreach($errors->all() as $error)
+    <script>alertify.error('{{ $error }}')</script>
+@endforeach
+
 </body>
 
 </html>

@@ -1,16 +1,17 @@
 @extends('backend.layout')
-@section('title','Yeni Kişi Ekle | Admin')
+@section('title','Kişi Düzenle | Admin')
 @section('content')
-
+    @php $name = explode(" ",$person->name); @endphp
     <div class="content-wrapper">
         <div class="row">
 
             <div class="col-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Yeni Kişi Ekle</h4>
-                        <form class="form-sample" action="{{route('person.store')}}" method="POST">
+                        <h4 class="card-title">Kişiyi Düzenle</h4>
+                        <form class="form-sample" action="{{route('person.update',[$person->id])}}" method="POST" enctype="multipart/form-data">
                             @CSRF
+                            @method('put')
                             <p class="card-description">
                                 Kişisel Bilgiler
                             </p>
@@ -19,7 +20,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">İsim</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="firstName" />
+                                            <input type="text" class="form-control" name="firstName" value="{{ isset($name[2]) ? $name[0]." ".$name[1] : $name[0] }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -27,7 +28,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Soyisim</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="secondName"/>
+                                            <input type="text" class="form-control" name="secondName" value="{{ isset($name[2]) ? $name[2] : $name[1] }}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -38,8 +39,8 @@
                                         <label class="col-sm-3 col-form-label">Cinsiyet</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="gender">
-                                                <option value="Man">Erkek</option>
-                                                <option value="Woman">Kadın</option>
+                                                <option value="Man" {{ $person->gender == "Man" ? "selected" : "" }}>Erkek</option>
+                                                <option value="Woman" {{ $person->gender == "Woman" ? "selected" : "" }}>Kadın</option>
                                             </select>
                                         </div>
                                     </div>
@@ -48,7 +49,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Doğum Tarihi</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="date" class="form-control" placeholder="gg/aa/yyyy" name="birthday"/>
+                                            <input type="text" id="date" class="form-control" placeholder="gg/aa/yyyy" name="birthday" value="@php echo date('d/m/Y', strtotime($person->birthday)) @endphp"/>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +65,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Adres</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="firstAddress"/>
+                                            <textarea type="text" class="form-control" name="firstAddress">{{$address->address}}
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +74,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Posta Kodu</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="postcode" name="postcode"/>
+                                            <input type="text" class="form-control" id="postcode" name="postcode" value="{{ $address->post_code }}"/>
                                             <label for="postcode">Bu alanda doğrulama vardır. Lütfen geçerli bir posta kodu giriniz.</label>
                                         </div>
                                     </div>
@@ -84,7 +86,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">İl</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="city"/>
+                                            <input type="text" class="form-control" name="city" value="{{ $address->city_name }}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -227,8 +229,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                             <button type="submit" class="btn btn-primary mb-2">Kayıt Et</button>
                         </form>
                     </div>

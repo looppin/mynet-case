@@ -22,10 +22,23 @@ Route::namespace('App\Http\Controllers\Backend')->group(function (){
 
     Route::prefix('admin')->group(function (){
 
-        Route::get('/','DefaultController@index')->name('admin.index');
+        Route::get('/login','DefaultController@login')->name('admin.login');
+        Route::post('/login','DefaultController@authenticate')->name('admin.authenticate');
+        Route::get('/logout','DefaultController@logout')->name('admin.logout');
 
-        Route::get('/newperson','DefaultController@newperson')->name('admin.newperson');
-        Route::resource('person','PersonController');
+    });
+
+    Route::middleware(['auth'])->group(function () {
+        Route::prefix('admin')->group(function () {
+
+            Route::get('/', 'DefaultController@index')->name('admin.index');
+
+            Route::get('/newperson', 'DefaultController@newperson')->name('admin.newperson');
+            Route::resource('person', 'PersonController');
+
+            Route::resource('user', 'UserController');
+
+        });
 
     });
 
