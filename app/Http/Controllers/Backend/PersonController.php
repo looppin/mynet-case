@@ -45,7 +45,7 @@ class PersonController extends Controller
             'gender' => 'required',
             'birthday' => 'required',
             'firstAddress' => 'required|min:3',
-            'postcode' => 'required|min:3',
+            'postcode' => 'required|postal_code:TR,NL,DE,FR,BE,USA|min:3',
             'city' => 'required|min:3',
             'country' => 'required|min:3',
         ]);
@@ -115,7 +115,7 @@ class PersonController extends Controller
             'gender' => 'required',
             'birthday' => 'required',
             'firstAddress' => 'required|min:3',
-            'postcode' => 'required|min:3',
+            'postcode' => 'required|postal_code:TR,NL,DE,FR,BE,USA|min:3',
             'city' => 'required|min:3',
             'country' => 'required|min:3',
         ]);
