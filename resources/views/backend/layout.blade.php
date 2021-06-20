@@ -73,12 +73,12 @@
                         @isset(Auth::user()->id)
                         <a class="dropdown-item" href="{{route('user.edit',Auth::user()->id)}}">
                             <i class="ti-settings text-primary"></i>
-                            Settings
+                            Ayarlar
                         </a>
                         @endisset
                         <a class="dropdown-item" href="{{route('admin.logout')}}">
                             <i class="ti-power-off text-primary"></i>
-                            Logout
+                            Çıkış
                         </a>
                     </div>
                 </li>

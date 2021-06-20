@@ -57,20 +57,28 @@ class PersonController extends Controller
             "gender" => $request->gender
         ]);
 
-        $Addresses = Addresses::insert([
-            'person_id' => Persons::latest()->value('id'),
-            'address' => $request->firstAddress,
-            'post_code' => $request->postcode,
-            'city_name' => $request->city,
-            'country_name' => $request->country
-        ]);
-
-        if( $person && $Addresses )
+        if($person)
         {
-            return redirect(route('person.index'))->with('success','Kişi Kayıt Edildi!');
+            $Addresses = Addresses::insert([
+                'person_id' => Persons::latest()->value('id'),
+                'address' => $request->firstAddress,
+                'post_code' => $request->postcode,
+                'city_name' => $request->city,
+                'country_name' => $request->country
+            ]);
+
+            if ($Addresses)
+            {
+                return redirect(route('person.index'))->with('success','Kişi Kayıt Edildi!');
+            }else{
+                return back()->with('error','Kişi Kayıt Edilmedi!');
+            }
+
         }else{
             return back()->with('error','Kişi Kayıt Edilmedi!');
         }
+
+
 
     }
 
